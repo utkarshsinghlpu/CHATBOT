@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class Chatbot {
+    private String name;
+    private int age;
+
+    public Chatbot(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+        String userInput;
+
+        System.out.println("Hello, I'm " + this.name + " and I'm " + this.age + " years old. What's your name?");
+        userInput = scanner.nextLine();
+        System.out.println("Nice to meet you, " + userInput + "!");
+        System.out.println("How are you feeling today?");
+        userInput = scanner.nextLine();
+        if (userInput.contains("good")) {
+            System.out.println("That's great to hear!");
+        } else if (userInput.contains("bad")) {
+            System.out.println("I'm sorry to hear that. Would you like to talk about it?");
+            userInput = scanner.nextLine();
+            if (userInput.contains("yes")) {
+                Listener listener = new Listener();
+                listener.listen();
+            } else {
+                System.out.println("That's okay, just know that I'm here if you need to talk.");
+            }
+        } else {
+            System.out.println("I don't understand. Let's talk about something else.");
+        }
+
+        scanner.close();
+    }
+
+    private class Listener {
+        public void listen() {
+            Scanner scanner = new Scanner(System.in);
+            String userInput;
+
+            System.out.println("What's on your mind?");
+            userInput = scanner.nextLine();
+            System.out.println("I'm listening...");
+            userInput = scanner.nextLine();
+            System.out.println("I see. And how does that make you feel?");
+            userInput = scanner.nextLine();
+            System.out.println("I understand. Is there anything else you want to talk about?");
+            userInput = scanner.nextLine();
+            if (userInput.contains("yes")) {
+                System.out.println("Okay, I'm here to listen.");
+                this.listen();
+            } else {
+                System.out.println("That's okay, just know that I'm here if you need to talk.");
+            }
+
+            scanner.close();
+        }
+    }
+
+    public static void main(String[] args) {
+        Chatbot chatbot = new Chatbot("Alice", 25);
+        chatbot.start();
+    }
+}
