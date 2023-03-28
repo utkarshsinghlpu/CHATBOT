@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Chatbot {
+ class Chatbot {
     private String name;
     private int age;
 
